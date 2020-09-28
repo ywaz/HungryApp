@@ -3,8 +3,8 @@ import 'package:Hungry/models/restaurant.dart';
 import 'package:flutter/material.dart';
 import 'package:Hungry/widgets/restaurantCard.dart';
 import 'package:provider/provider.dart';
-import 'package:Hungry/widgets/mapFloatingButton.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:Hungry/widgets/bottom_sheet_Map.dart';
 
 class RestaurantsList extends StatefulWidget {
   @override
@@ -39,29 +39,34 @@ class _RestaurantsListState extends State<RestaurantsList> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     ItemScrollController scrollController = ItemScrollController();
     List<Restaurant> restaurantsList =
-        Provider.of<NearByPlaces>(context, listen: false).restaurants;
+        Provider.of<NearByPlaces>(context).restaurants;
 
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : ScrollablePositionedList.builder(
               itemCount: restaurantsList.length,
               itemScrollController: scrollController,
-
               itemBuilder: (ctx, index) {
                 return RestaurantWidget(restaurantsList[index]);
               }),
-      floatingActionButton: MapFloatingButton(scrollController)
+      floatingActionButton: BottomSheetMap(scrollController))
+    
     );
-  }
+
+}
 }
 
-///code using futurebuilder
+
+
+
+///######################### Parts of the code using FutureBuilder ##########################
+
 // ),
 // FutureBuilder(
 //   future: NearByPlaces.getCloseRestaurants(),

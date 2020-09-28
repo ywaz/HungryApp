@@ -95,4 +95,6 @@ class NearByPlaces with ChangeNotifier{
     print(mapUrl);
     return mapUrl;
   }
+
+
 }

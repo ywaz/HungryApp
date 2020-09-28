@@ -11,7 +11,6 @@ class Restaurant{
   int userRatings;
   bool openNow;
 
-
   Restaurant({this.placeId, this.coordinates, this.imageUrl, this.name, this.openNow, this.rating, this.userRatings, });
   
 }
